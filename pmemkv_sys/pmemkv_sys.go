@@ -17,7 +17,9 @@ import "unsafe"
 // Kvengine_start function as declared in pmemkv-go/libpmemkv.h:137
 func Kvengine_start(context unsafe.Pointer, engine string, config string, callback KVStartFailureCallback) *KVEngineSys {
 	ccontext, _ := context, cgoAllocsUnknown
-	cengine, _ := unpackPCharString(engine)
+	// cengine, _ := unpackPCharString(engine)
+	cengine := C.CString(engine)
+	defer C.free(unsafe.Pointer(cengine))
 	cconfig, _ := unpackPCharString(config)
 	ccallback, _ := callback.PassRef()
 	__ret := C.kvengine_start(ccontext, cengine, cconfig, ccallback)
