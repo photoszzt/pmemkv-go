@@ -24,7 +24,7 @@ TRANSLATOR:
       - {transform: export}
     function:
       - {action: accept, from: "kvengine_"}
-      - {transform: lower}
+      - {transform: export}
     private:
       - {transform: unexport}
   PtrTips:
