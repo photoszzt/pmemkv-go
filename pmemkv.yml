@@ -9,7 +9,7 @@ GENERATOR:
 
 PARSER:
   SourcesPaths: ["libpmemkv.h"]
-  IncludePaths: ["/usr/include", "/usr/include/linux"]
+  IncludePaths: ["/usr/include"]
 
 TRANSLATOR:
   ConstRules:
@@ -17,13 +17,19 @@ TRANSLATOR:
   Rules:
     type:
       - {action: accept, from: "KVEngine"}
-      - {action: accept, from: "KVStatus"}
       - {action: accept, from: "^KV.*Callback$"}
       - {action: accept, from: "^KV.*Function$"}
       - {action: replace, from: "KVEngine", to: "KVEngineSys"}
       - {transform: export}
     function:
       - {action: accept, from: "kvengine_"}
+      - {transform: replace, from: "_above$", to: Above}
+      - {transform: replace, from: "_below$", to: Below}
+      - {transform: replace, from: "_between$", to: Between}
+      - {transform: replace, from: "_all.*", to: "All"}
+      - {transform: replace, from: "_each", to: "Each"}
+      - {transform: replace, from: "_count", to: "Count"}
+      - {transform: replace, from: "_exists", to: "Exists"}
       - {transform: export}
     private:
       - {transform: unexport}
@@ -47,3 +53,6 @@ TRANSLATOR:
       - {target: kvengine_get_copy, tips: [ref, 0, ref, 0, ref]}
       - {target: kvengine_put, tips: [ref, 0, ref, 0, ref]}
       - {target: kvengine_remove, tips: [ref, 0, ref]}
+  TypeTips:
+    function:
+      - {target: kvengine_get_copy, self: plain}
