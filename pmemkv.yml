@@ -23,13 +23,6 @@ TRANSLATOR:
       - {transform: export}
     function:
       - {action: accept, from: "kvengine_"}
-      - {transform: replace, from: "_above$", to: Above}
-      - {transform: replace, from: "_below$", to: Below}
-      - {transform: replace, from: "_between$", to: Between}
-      - {transform: replace, from: "_all.*", to: "All"}
-      - {transform: replace, from: "_each", to: "Each"}
-      - {transform: replace, from: "_count", to: "Count"}
-      - {transform: replace, from: "_exists", to: "Exists"}
       - {transform: export}
     private:
       - {transform: unexport}
@@ -53,6 +46,3 @@ TRANSLATOR:
       - {target: kvengine_get_copy, tips: [ref, 0, ref, 0, ref]}
       - {target: kvengine_put, tips: [ref, 0, ref, 0, ref]}
       - {target: kvengine_remove, tips: [ref, 0, ref]}
-  TypeTips:
-    function:
-      - {target: kvengine_get_copy, self: plain}
