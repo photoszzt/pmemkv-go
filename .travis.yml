@@ -1,21 +1,10 @@
 sudo: required
-language: go
 
 os:
   - linux
 
-go:
-  - 1.x
-  - 1.11.x
-  - master
+install:
+  - docker pull pmem/pmemkv:ubuntu-18.04
 
 script:
-  - cd pmemkv_sys
-  - go build
-  - cd ..
-  - cd pmemkv
-  - go build
-  - cd ..
-  - cd example
-  - go build
-  - cd ..
+  - ./docker_build.sh
