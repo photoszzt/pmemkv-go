@@ -6,7 +6,7 @@ if [[ -z "$HOST_WORKDIR" ]]; then
 fi
 
 chmod -R a+w $HOST_WORKDIR
-WORKDIR=/pmemkv-rs
+WORKDIR=/pmemkv-go
 
 docker run --privileged=true \
     -v $HOST_WORKDIR:$WORKDIR \
