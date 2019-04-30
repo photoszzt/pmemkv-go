@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/photoszzt/pmemkv-go"
+	"github.com/photoszzt/pmemkv-go/pmemkv"
 	"os"
 )
 
@@ -12,7 +12,7 @@ func startFailureFunc(engine string, config string, msg string) {
 	os.Exit(1)
 }
 
-func allFunc(keybytes int32, key string) {
+func allFunc(key string) {
 	fmt.Printf("%s\n", key)
 }
 

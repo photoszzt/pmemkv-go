@@ -14,35 +14,42 @@ PARSER:
 TRANSLATOR:
   ConstRules:
     defines: eval
+    enum: eval
   Rules:
     type:
       - {action: accept, from: "KVEngine"}
+      - {action: accept, from: "KVStatus"}
       - {action: accept, from: "^KV.*Callback$"}
-      - {action: accept, from: "^KV.*Function$"}
       - {action: replace, from: "KVEngine", to: "KVEngineSys"}
       - {transform: export}
     function:
       - {action: accept, from: "kvengine_"}
+      - {action: replace, from: "kvengine_"}
       - {transform: export}
     private:
       - {transform: unexport}
+    post-global:
+      - {action: replace, from: _$}
+      - {load: snakecase}
+      - {load: doc.google}
   PtrTips:
     function:
+      - {target: kvengine_start, tips: [ref, ref, ref, ref]}
       - {target: kvengine_stop, tips: [ref]}
-      - {target: kvengine_all, tips: [ref, ref, 0]}
-      - {target: kvengine_all_above, tips: [ref, ref, 0, ref, 0]}
-      - {target: kvengine_all_below, tips: [ref, ref, 0, ref, 0]}
-      - {target: kvengine_all_between, tips: [ref, ref, 0, ref, 0, ref, 0]}
+      - {target: kvengine_all, tips: [ref, ref, ref]}
+      - {target: kvengine_all_above, tips: [ref, ref, 0, ref, ref]}
+      - {target: kvengine_all_below, tips: [ref, ref, 0, ref, ref]}
+      - {target: kvengine_all_between, tips: [ref, ref, 0, ref, 0, ref, ref]}
       - {target: kvengine_count, tips: [ref]}
       - {target: kvengine_count_above, tips: [ref, 0, ref]}
       - {target: kvengine_count_below, tips: [ref, 0, ref]}
       - {target: kvengine_count_between, tips: [ref, 0, ref, 0, ref]}
-      - {target: kvengine_each, tips: [ref, ref, 0]}
-      - {target: kvengine_each_above, tips: [ref, ref, 0, ref, 0]}
-      - {target: kvengine_each_below, tips: [ref, ref, 0, ref, 0]}
-      - {target: kvengine_each_between, tips: [ref, ref, 0, ref, 0, ref, 0]}
+      - {target: kvengine_each, tips: [ref, ref, ref]}
+      - {target: kvengine_each_above, tips: [ref, ref, 0, ref, ref]}
+      - {target: kvengine_each_below, tips: [ref, ref, 0, ref, ref]}
+      - {target: kvengine_each_between, tips: [ref, ref, 0, ref, 0, ref, ref]}
       - {target: kvengine_exists, tips: [ref, 0, ref]}
-      - {target: kvengine_get, tips: [ref, ref, 0, ref, 0]}
+      - {target: kvengine_get, tips: [ref, ref, 0, ref, ref]}
       - {target: kvengine_get_copy, tips: [ref, 0, ref, 0, ref]}
       - {target: kvengine_put, tips: [ref, 0, ref, 0, ref]}
       - {target: kvengine_remove, tips: [ref, 0, ref]}
