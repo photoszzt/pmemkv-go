@@ -9,7 +9,7 @@ GENERATOR:
 
 PARSER:
   SourcesPaths: ["libpmemkv.h"]
-  IncludePaths: ["/usr/include"]
+  IncludePaths: ["pmemkv_sys"]
 
 TRANSLATOR:
   ConstRules:
